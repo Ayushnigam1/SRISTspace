@@ -33,14 +33,14 @@ function Event() {
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(resobj),
       };
-     await fetch("http://127.0.0.1:5000/uploadEvent", options).then(
+     await fetch("https://sristspace.onrender.com/uploadEvent", options).then(
         (response) => response.json()
       );
       console.log(resobj);
       setEventName("");
       setEventVenue("");
       setImage("");
-      await fetch("http://127.0.0.1:5000/fetchEvents")
+      await fetch("https://sristspace.onrender.com/fetchEvents")
       setOpen(false)
     
     } else {

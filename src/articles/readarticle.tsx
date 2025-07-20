@@ -21,7 +21,7 @@ class ReadArticle extends React.Component<RouteComponentProps, State> {
       caption: "",
     };
     this.like = this.like.bind(this);
-    this.URL = "http://127.0.0.1:5000/getArticles/";
+    this.URL = "https://sristspace.onrender.com/getArticles/";
     fetch((this.URL + props.match.params.article) as string)
       .then((res) => res.json())
       .then((data) => {

@@ -13,19 +13,19 @@ from datetime import datetime, timedelta
 # import jwt
 
 app = Flask(__name__, static_folder='build')
-CORS(app, resources={r"/*": {"origins": ["http://127.0.0.1:3000", "http://localhost:3000"]}})
+CORS(app)
 app.config['CORS_HEADERS'] = 'Content-Type'
 app.config['SECRET_KEY'] = '$ri$t$p@ceKey'
 # CORS(app)
 
 load_dotenv()
-# env = os.environ.get("ENV")
-# if (env == "production"):
-#     port = os.environ.get("PORT")
-# else:
-#     port = 5000
-port =5000
-# print("the current environment is : " + env)
+env = os.environ.get("ENV")
+if (env == "production"):
+    port = os.environ.get("PORT")
+else:
+    port = 5000
+
+print("the current environment is : " + env)
 
 
 # Serve React App

@@ -67,7 +67,7 @@ function EmptyCard() {
 function Ecard() {
   const [List, setList] = useState([] as IEvent[]);
   useEffect(() => {
-    fetch("http://127.0.0.1:5000/fetchEvents")
+    fetch("https://sristspace.onrender.com/fetchEvents")
       .then((res) => res.json())
       .then((data) => {setList(data.data); console.log(data)})
       .catch((error) => console.log(error));

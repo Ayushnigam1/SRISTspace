@@ -48,7 +48,7 @@ class Login extends Component<props, states> {
   signUPToserver(event: any) {
     event.preventDefault();
     var url: string =
-      "http://127.0.0.1:5000/adduser/" + this.state.name + "/"+
+      "https://sristspace.onrender.com/adduser/" + this.state.name + "/"+
       this.state.email +
       "/" +
       this.state.password +
@@ -98,7 +98,7 @@ class Login extends Component<props, states> {
     event.preventDefault();
 
     var url: string =
-      "http://127.0.0.1:5000/getuser/" +
+      "https://sristspace.onrender.com/getuser/" +
       this.state.email +
       "/" +
       this.state.password;

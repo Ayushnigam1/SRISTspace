@@ -28,7 +28,7 @@ const Index = () => {
   useEffect(() => {
     const token = localStorage.getItem('token');
     if (token) {
-      fetch('http://127.0.0.1:5000/protected-endpoint', {
+      fetch('https://sristspace.onrender.com/protected-endpoint', {
         method: 'GET',
         headers: { 'jwtToken': token }
       })

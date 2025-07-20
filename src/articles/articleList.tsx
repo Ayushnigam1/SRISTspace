@@ -10,7 +10,7 @@ interface state extends Article {
 function ArticleList() {
   let [articles, setarticles] = useState([] as state[]);
 
-  let URL = "http://127.0.0.1:5000/fetchArticles/0";
+  let URL = "https://sristspace.onrender.com/fetchArticles/0";
 
   useEffect(() => {
     fetch(URL)
