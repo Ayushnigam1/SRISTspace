@@ -14,25 +14,48 @@ import ReadArticle from "./articles/readarticle";
 import AddArticle from "./articles/addarticle";
 import UserProfile from "./users/UserProfile";
 import {User, UserContext } from "./users/UserAuthContext";
-import {useState} from "react";
+import {useContext, useEffect, useState} from "react";
 
 const Index = () => {
   const [login, setLogin] = useState(false);
   const [user, setUser] = useState({
     user_id: "",
     name: "",
+    email:"",
     login: false,
   } as User);
+  
+  useEffect(() => {
+    const token = localStorage.getItem('token');
+    if (token) {
+      fetch('http://127.0.0.1:5000/protected-endpoint', {
+        method: 'GET',
+        headers: { 'jwtToken': token }
+      })
+      .then(response => {
+        if (response.ok) {
+          setLogin(true);
+          const savedUser = localStorage.getItem('user');
+          if (savedUser) {
+            setUser(JSON.parse(savedUser));
+          }
+        } else {
+          setLogin(false);
+        }
+      });
+    }
+  }, []);
 
   return (
     <>
-      <UserContext.Provider value={{user: user, updatedUser: (l) => {
-        console.log(l)
-        setUser(l)
-      }, updatLogin: (l) => {
-        console.log(l)
-        setLogin(l)
-      }}}>
+      <UserContext.Provider value={{
+        user,
+        updatedUser: (u: User) => {
+          setUser(u);
+          localStorage.setItem('user', JSON.stringify(u));
+        },
+        updatLogin: (l: boolean) => setLogin(l),
+      }}>
         <Nav></Nav>
         <div className="px-3 lg:p-0 max-w-7xl mx-auto min-h-screen">
           <Switch>

@@ -18,7 +18,7 @@ function Card(props: any) {
   }
 
   useEffect(() => {
-    let URL = "https://sristspace.herokuapp.com"
+    let URL = "http://127.0.0.1:5000"
     fetch(URL + "/updateEvent/" + props.id + "/" + count)
   }, [count])
 
@@ -66,9 +66,8 @@ function EmptyCard() {
 
 function Ecard() {
   const [List, setList] = useState([] as IEvent[]);
-  console.log(List.length)
   useEffect(() => {
-    fetch("https://sristspace.herokuapp.com/fetchEvents")
+    fetch("http://127.0.0.1:5000/fetchEvents")
       .then((res) => res.json())
       .then((data) => {setList(data.data); console.log(data)})
       .catch((error) => console.log(error));

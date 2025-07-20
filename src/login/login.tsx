@@ -13,6 +13,7 @@ interface states {
   password: string;
   pass1: string;
   response: string;
+  name:string;
 }
 
 interface props {
@@ -25,12 +26,13 @@ class Login extends Component<props, states> {
     super(props);
     this.state = {
       successOpen: true,
-      open: true,
+      open: false,
       rendered: "2",
       password: "",
       email: "",
       pass1: "",
       response: "",
+      name:""
     };
     this.closeDialog = this.closeDialog.bind(this);
     this.changeToLogin = this.changeToLogin.bind(this);
@@ -46,7 +48,7 @@ class Login extends Component<props, states> {
   signUPToserver(event: any) {
     event.preventDefault();
     var url: string =
-      "https://sristspace.herokuapp.com/adduser/" +
+      "http://127.0.0.1:5000/adduser/" + this.state.name + "/"+
       this.state.email +
       "/" +
       this.state.password +
@@ -96,7 +98,7 @@ class Login extends Component<props, states> {
     event.preventDefault();
 
     var url: string =
-      "http://sristspace.herokuapp.com/getuser/" +
+      "http://127.0.0.1:5000/getuser/" +
       this.state.email +
       "/" +
       this.state.password;
@@ -119,12 +121,18 @@ class Login extends Component<props, states> {
             alert("wrong password or email.");
           } else {
             updatLogin(true)
+            localStorage.setItem('token', result.jwtToken);
+
             let user = {
+
               user_id: result.data._id,
-              name: result.data.email,
+              name: result.data.name,
+              email: result.data.email,
               login: true,
             }
+            localStorage.setItem('user', JSON.stringify(user));
             updatedUser(user)
+            
             this.closeDialog();
           }
         });
@@ -133,7 +141,9 @@ class Login extends Component<props, states> {
       isValid = false;
     }
   }
-
+  setName(name: string) {
+    this.setState({ name:name });
+  }
   setEmail(email: string) {
     this.setState({ email: email });
   }
@@ -318,6 +328,14 @@ class Login extends Component<props, states> {
                         Sign Up
                       </h3>
                       <form className="text-fields flex flex-col gap-y-4">
+                      <input
+                          className="p-2 border rounded-lg focus:outline-lime-500 commonInputs1"
+                          onChange={(evt) => {
+                            this.setName(evt.target.value);
+                          }}
+                          placeholder={"Type Your Name"}
+                          type="name"
+                        ></input>
                         <input
                           className="p-2 border rounded-lg focus:outline-lime-500 commonInputs1"
                           onChange={(evt) => {

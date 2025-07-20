@@ -4,6 +4,7 @@ export interface User {
   name: String;
   user_id: String;
   login: Boolean;
+  email:String;
 }
 
 export const UserContext = React.createContext({

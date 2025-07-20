@@ -74,7 +74,7 @@ class Subjects extends React.Component<Props, State> {
       links: [],
     };
     this.handleChange = this.handleChange.bind(this);
-    this.URL = "https://sristspace.herokuapp.com";
+    this.URL = "http://127.0.0.1:5000";
     this.toggle = this.toggle.bind(this);
   }
 

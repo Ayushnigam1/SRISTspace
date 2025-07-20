@@ -13,19 +13,19 @@ from datetime import datetime, timedelta
 # import jwt
 
 app = Flask(__name__, static_folder='build')
-cors = CORS(app)
+CORS(app, resources={r"/*": {"origins": ["http://127.0.0.1:3000", "http://localhost:3000"]}})
 app.config['CORS_HEADERS'] = 'Content-Type'
 app.config['SECRET_KEY'] = '$ri$t$p@ceKey'
 # CORS(app)
 
 load_dotenv()
-env = os.environ.get("ENV")
-if (env == "production"):
-    port = os.environ.get("PORT")
-else:
-    port = 5000
-
-print("the current environment is : " + env)
+# env = os.environ.get("ENV")
+# if (env == "production"):
+#     port = os.environ.get("PORT")
+# else:
+#     port = 5000
+port =5000
+# print("the current environment is : " + env)
 
 
 # Serve React App
@@ -65,12 +65,18 @@ def checkForToken(f):
 
     return decorator
 
+@app.route("/protected-endpoint", methods=["GET"])
+@checkForToken
+def protected():
+    return jsonify(message="Valid Token"), 200
+
+
 
 # url - https://sristspace.herokuapp.com/adduser/email/pass/sem/stream/branch
-@app.route('/adduser/<email>/<password>/<semester>/<stream>/<branch>', methods=['POST', 'GET'])
-def newUser(email, password, semester, stream, branch):
+@app.route('/adduser/<name>/<email>/<password>/<semester>/<stream>/<branch>', methods=['POST', 'GET'])
+def newUser(name,email, password, semester, stream, branch):
     secure_pass = generate_password_hash(password)
-    callback = mongoDataBase.addUsers(email, secure_pass, semester, stream, branch)
+    callback = mongoDataBase.addUsers(name,email, secure_pass, semester, stream, branch)
     return callback, 201
 
 

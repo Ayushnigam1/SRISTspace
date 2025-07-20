@@ -123,7 +123,6 @@ p [content-editable] {
     top: initial !important;
     left: initial !important;
     bottom: 6rem;
-    display: initial !important;
     right: 1rem;
     height: 3.5rem !important;
     width: 3.5rem !important;

@@ -47,7 +47,7 @@ class Article extends React.Component<RouteComponentProps, State> {
     this.handlekeydown = this.handlekeydown.bind(this);
     this.handleChange = this.handleChange.bind(this);
     this.publish = this.publish.bind(this);
-    this.URL = "https://sristspace.herokuapp.com";
+    this.URL = "http://127.0.0.1:5000";
   }
 
   URL: any;
@@ -159,10 +159,11 @@ class Article extends React.Component<RouteComponentProps, State> {
 
   focusGain(event: any) {
     let rect = event.target.getBoundingClientRect();
+    const isImage = event.target.tagName === "IMG";
     this.setState({
       position: { x: rect.x - 48, y: rect.y - 4 },
       current: event.target,
-      delete: "none",
+      delete: isImage ? "flex" : "none",
       menu: "initial",
     });
   }
@@ -299,6 +300,7 @@ class Article extends React.Component<RouteComponentProps, State> {
         >
           <Icons name="delete"></Icons>
         </button>
+       
         <div className="menu-display">
           <div
             className="icon-button floating-menu"
@@ -306,6 +308,7 @@ class Article extends React.Component<RouteComponentProps, State> {
               position: "fixed",
               top: this.state.position.y,
               left: this.state.position.x,
+              border: "2px solid black"
             }}
           >
             <input type="checkbox" id="float-menu" className="float-select" />

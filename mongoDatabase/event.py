@@ -6,7 +6,7 @@ import cloudinary.api
 import cloudinary.uploader
 from bson import json_util
 from bson.objectid import ObjectId
-path = "mongodb+srv://utkarsh:utkarsh123456@sristspace.lyx27.mongodb.net/myFirstDatabase?retryWrites=true&w=majority"
+path = "mongodb+srv://ayush27nigam02:Programmer27@todoclustor0.2cpskkr.mongodb.net/sristspacedb?retryWrites=true&w=majority"
 database = "sristspacedb"
 
 client = pg.MongoClient(path)

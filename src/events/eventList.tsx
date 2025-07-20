@@ -5,7 +5,7 @@ import { useHistory } from "react-router";
 function EventList() {
   let [events, setevents] = useState([] as IEvent[]);
 
-  let URL = "https://sristspace.herokuapp.com/fetchEvents";
+  let URL = "http://127.0.0.1:5000/fetchEvents";
   let history = useHistory();
 
   useEffect(() => {

@@ -29,7 +29,7 @@ function Nav() {
         <NavLink className="flex gap-x-3 items-center" to="/">
           <img
             className="h-8 w-8"
-            src="https://storage.googleapis.com/ezap-prod/colleges/7918/shri-ram-institute-of-science-and-technology-jabalpur-logo.jpg"
+            src="shri-ram-institute-of-science-and-technology-jabalpur-logo.jpg"
             alt="website logo"
           />
           <h2 className="text-xl">
@@ -136,12 +136,16 @@ function Nav() {
                                       : "text-gray-900"
                                   } group flex rounded-md items-center w-full px-2 py-2 text-sm`}
                                   onClick={() => {
-                                    updatedUser({
+                                    usercontext.updatedUser({
                                       user_id: "",
                                       login: false,
-                                      name: ""
-                                    })
-                                    updatLogin(false);
+                                      name: "",
+                                      email:"",
+                                    });
+                                    usercontext.updatLogin(false);
+                                    localStorage.removeItem("user");
+                                    localStorage.removeItem("token");
+                                    
                                   }}
                                 >
                                   <FiLogOut size={18} className="mr-2" />
@@ -195,7 +199,7 @@ function Nav() {
                           {!usercontext.user.login ? (
                             <button
                               className="px-5 py-2 bg-lime-500 text-base hover:bg-lime-600 text-white font-medium rounded-lg"
-                              onClick={(e) => {setOpen(!open)}}
+                              onClick={(e) => {setOpen(true)}}
                             >
                               Login
                             </button>
@@ -257,17 +261,29 @@ function Nav() {
                           <FiInfo className="mr-2 inline" size={18} />
                           About
                         </NavLink>
-                        <NavLink
+                        {usercontext.user.login ? ( <NavLink
                           className="links p-3 text-base rounded-lg font-medium text-rose-500 hover:text-lime-600"
                           activeClassName="text-lime-600 bg-gray-50"
-                          to="/about"
-                          onClick={(e) => {
+                          to="/"
+                          onClick={() => {
+                              usercontext.updatedUser({
+                                user_id: "",
+                                login: false,
+                                name: "",
+                                email:"",
+                              });
+                              usercontext.updatLogin(false);
+                              localStorage.removeItem("user");
+                              localStorage.removeItem("token");
+                              
+                            
                             close();
                           }}
                         >
                           <FiLogOut className="mr-2 inline" size={18} />
                           Logout
                         </NavLink>
+):<></>}
                       </div>
                     </div>
                   )}

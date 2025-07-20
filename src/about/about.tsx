@@ -27,7 +27,7 @@ function About() {
           <div className="flex items-center flex-col aboutdata mt-4">
             <div className="name text-xl text-lime-500 font-bold">Ayush nigam</div>
             <div className="role text-gray-500">Role</div>
-            <div className="faculty font-bold text-gray-900">Frontend Development</div>
+            <div className="faculty font-bold text-gray-900">Full stack Development</div>
           </div>
         </div>
         <div className="aboutcontent flex items-center flex-col">

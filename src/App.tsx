@@ -3,6 +3,7 @@ import EventList from "./events/eventList";
 import Slidecrousel from "./crousel/Slidecrousel";
 
 function App() {
+
   let notification = [
     {
       id: "1",

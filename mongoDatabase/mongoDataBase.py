@@ -7,10 +7,13 @@ import mongoDatabase.articles
 import mongoDatabase.event
 from werkzeug.security import check_password_hash
 
-path = "mongodb+srv://utkarsh:utkarsh123456@sristspace.lyx27.mongodb.net/myFirstDatabase?retryWrites=true&w=majority"
+path = "mongodb+srv://ayush27nigam02:Programmer27@todoclustor0.2cpskkr.mongodb.net/sristspacedb?retryWrites=true&w=majority"
 database = "sristspacedb"
 
 client = pg.MongoClient(path)
+
+
+
 
 users = "users"
 notes = "notes"
@@ -59,8 +62,9 @@ def login_user(uname, pwd):
 
 
 # add new sign in...
-def addUsers(email, password, semester, stream, branch):
+def addUsers(name,email, password, semester, stream, branch):
     json = {
+        'name':name,
         'email': email,
         'password': password,
         'semester': semester,

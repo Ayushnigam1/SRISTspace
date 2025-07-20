@@ -19,13 +19,9 @@ function Event() {
     setImage("");
   };
 
-  const handleSubmit = () => {
-    setEventName("");
-    setEventVenue("");
-    setImage("");
-
+  const handleSubmit = async() => {
     if (eventName !== "" && eventVenue !== "" && image !== "") {
-      console.log("event sunmitted");
+      console.log("event submitted");
       let resobj = {
         eventname: eventName,
         eventvenue: eventVenue,
@@ -37,16 +33,20 @@ function Event() {
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(resobj),
       };
-      fetch("https://sristspace.herokuapp.com/uploadEvent", options).then(
+     await fetch("http://127.0.0.1:5000/uploadEvent", options).then(
         (response) => response.json()
       );
       console.log(resobj);
       setEventName("");
       setEventVenue("");
       setImage("");
+      await fetch("http://127.0.0.1:5000/fetchEvents")
+      setOpen(false)
+    
     } else {
       alert("plz fill the data");
     }
+   
   };
   const onChange = (event: any) => {
     event.preventDefault();
