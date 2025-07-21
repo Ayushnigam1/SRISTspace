@@ -67,7 +67,7 @@ class Search extends React.Component<
       eventlist: [],
       articlelist: [],
     };
-    this.URL = "http://127.0.0.1:5000";
+    this.URL = "https://sristspace.onrender.com";
   }
 
   URL: any;

@@ -199,7 +199,8 @@ function Nav() {
                           {!usercontext.user.login ? (
                             <button
                               className="px-5 py-2 bg-lime-500 text-base hover:bg-lime-600 text-white font-medium rounded-lg"
-                              onClick={(e) => {setOpen(true)}}
+                              onClick={(e) => {
+                                setOpen((prev)=> !prev)}}
                             >
                               Login
                             </button>
@@ -208,7 +209,17 @@ function Nav() {
                               <div className="h-[48px] w-[48px] bg-gray-300 flex items-center justify-center rounded-full">
                                 <FiUser size={24} />
                               </div>
-                              <div className="ml-2">{usercontext.user.name}</div>
+                              
+                              <NavLink
+                          className="links p-3 text-base rounded-lg font-medium hover:text-lime-600"
+                          activeClassName="text-lime-600 "
+                          to={`/users/${usercontext.user.user_id}`}
+                          onClick={(e) => {
+                            close();
+                          }}
+                        >
+                          {usercontext.user.name}
+                        </NavLink>
                             </>
                           )}
                         </div>
@@ -262,8 +273,8 @@ function Nav() {
                           About
                         </NavLink>
                         {usercontext.user.login ? ( <NavLink
-                          className="links p-3 text-base rounded-lg font-medium text-rose-500 hover:text-lime-600"
-                          activeClassName="text-lime-600 bg-gray-50"
+                          className="links p-3 rounded-lg font-medium text-rose-500 "
+                          activeClassName="text-rose-600"
                           to="/"
                           onClick={() => {
                               usercontext.updatedUser({

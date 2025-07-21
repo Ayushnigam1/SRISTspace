@@ -20,7 +20,7 @@ class Recent extends React.Component< {}, { notelist: Note[] }>
     this.state = {
       notelist: [],
     };
-    this.URL = "http://127.0.0.1:5000";
+    this.URL = "https://sristspace.onrender.com";
   }
 
   URL: any;

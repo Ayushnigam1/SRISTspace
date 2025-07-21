@@ -41,8 +41,8 @@ class Login extends Component<props, states> {
 
   componentDidUpdate(prevProps) {
     if (prevProps.open != this.props.open)
-      this.setState({...this.state, open: this.props.open})
-    console.log(this.state.open)
+     { this.setState({...this.state, open: this.props.open})
+      console.log(this.state.open)}
   }
 
   signUPToserver(event: any) {

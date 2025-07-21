@@ -18,7 +18,7 @@ function Card(props: any) {
   }
 
   useEffect(() => {
-    let URL = "http://127.0.0.1:5000"
+    let URL = "https://sristspace.onrender.com"
     fetch(URL + "/updateEvent/" + props.id + "/" + count)
   }, [count])
 
